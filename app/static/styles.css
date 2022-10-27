@@ -1,0 +1,30 @@
+body{
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.treesaw.co.uk%2Fwp-content%2Fuploads%2F2020%2F03%2Ftree-3822149_1920.jpg&f=1&nofb=1&ipt=e877f77b0aba587c6ddd042bb53911d7e1dd53e7258b96648549d1a6d5a98990&ipo=images');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+}
+
+#navbar{
+  background-color: darkgreen;
+  color: #ecf9ec;
+  display: flex;
+  justify-content: space-around;
+  align: center;
+}
+
+.navitem{
+  background-color: darkgreen;
+  color: #ecf9ec;
+}
+
+.navitem:hover{
+  color: darkgreen;
+  background-color: #ecf9ec;
+  padding: 2px;
+}
+
+h1{
+  color: #ecf9ec;
+}

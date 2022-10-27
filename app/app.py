@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request
 import requests, json
 from requests.auth import HTTPBasicAuth
 
+
 #settings stored as replit secrets
 wt_username = os.environ['wt_username']
 wt_password = os.environ["wt_password"]
@@ -24,6 +25,12 @@ output = rsp.json()[0]['rating']
 
 app = Flask(__name__)
 
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+# db = SQLAlchemy(app)
+
+
+  
 
 @app.route('/')
 def index():
