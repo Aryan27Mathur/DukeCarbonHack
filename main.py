@@ -1,4 +1,6 @@
-import app.app
+
 
 if(0):
-  import db.db
+  import db.hosts
+else:
+  import app.app

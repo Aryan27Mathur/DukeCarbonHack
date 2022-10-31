@@ -2,26 +2,20 @@ import os
 from flask import Flask, render_template, redirect, url_for, request
 import requests, json
 from requests.auth import HTTPBasicAuth
-
+import db.hosts
 
 #settings stored as replit secrets
-wt_username = os.environ['wt_username']
-wt_password = os.environ["wt_password"]
-wt_email = os.environ["wt_email"]
-wt_org = os.environ["wt_org"]
+# wt_username = os.environ['wt_username']
+# wt_password = os.environ["wt_password"]
+# wt_email = os.environ["wt_email"]
+# wt_org = os.environ["wt_org"]
 
-#logging in
-login_url = 'https://api2.watttime.org/v2/login'
-token = requests.get(login_url, auth=HTTPBasicAuth(wt_username, wt_password)).json()['token']
+# #logging in
+# login_url = 'https://api2.watttime.org/v2/login'
+# token = requests.get(login_url, auth=HTTPBasicAuth(wt_username, wt_password)).json()['token']
 
 
 
-#requesting GSF API
-data_url = 'https://carbon-aware-api.azurewebsites.net/emissions/bylocation?location=centralus'
-headers = {'accept': 'application/json'}
-params = {'location': 'centralus'}
-rsp = requests.get(data_url, headers=headers, params=params)
-output = rsp.json()[0]['rating']
 
 app = Flask(__name__)
 
@@ -33,8 +27,40 @@ app = Flask(__name__)
   
 
 @app.route('/')
-def index():
-    return render_template("base.html", apicall = output)
+def base():
+    return render_template("index.html")
 
 
+@app.route('/table')
+def servertable():
+  hosts = db.hosts.getAllHosts()
+  locations = [x[-2] for x in hosts]
+  locSet = list(set(locations))
+  #requesting GSF API
+  data_url = 'https://carbon-aware-api.azurewebsites.net/emissions/bylocations'
+  headers = {'accept': 'application/json'}
+  params = {'location': locations}
+  rsp = requests.get(data_url, headers=headers, params=params)
+  output = rsp.json()
+  ratings = []
+  for loc in locations:
+    i = locSet.index(loc)
+    ratings.append(output[i]['rating'])
+
+
+  print(ratings)
+  return render_template("servertable.html", hosts=hosts, ratings=ratings)
+
+@app.route('/about')
+def aboutus():
+  return render_template("aboutus.html")
+
+@app.route('/login')
+def login():
+  return render_template("login.html")
+
+@app.route('/signup')
+def signup():
+  return render_template("signup.html")
+  
 app.run(host='0.0.0.0', port=81)

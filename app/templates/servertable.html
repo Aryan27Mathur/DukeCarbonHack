@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table table-bordered table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Server</th>
+      <th scope="col">Queue Length</th>
+      <th scope="col">Emissions Rating</th>
+      <th scope="col">Price ($/kWh)</th>
+      <th scope="col">Location</th>
+      <th scope="col">Hardware</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for n in range(hosts| length) %}
+    <tr>
+      <th scope="row">{{hosts[n][1]}}</th>
+      <td>{{hosts[n][2]}}</td>
+      <td>{{ratings[n]}}</td>
+      <td>{{hosts[n][3]}}</td>
+      <td>{{hosts[n][4]}}</td>
+      <td>{{hosts[n][5]}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!--   <table id = "table">
+    <tr class = "tablerow">
+      <th class = "servername">Server Name</th>
+      <th class = "serverqueue">Queue Length</th>
+      <th class = "serveremission">Emission Rating</th>
+      <th class = "servercost">Cost</th>
+      <th class = "serverlocation">Location</th>
+      <th class = "serverhardware">Hardware</th>
+    </tr>
+    <tr>
+      <td class = "servername">Amazon Cloud</td>
+      <td class = "serverqueue">10</td>
+      <td class = "serveremission">500</td>
+      <td class = "servercost">$0.80</td>
+      <td class = "serverlocation">California</td>
+      <td class = "serverhardware">MIPS X86</td>
+    </tr>
+  </table> -->
+
+{% endblock %}
+  
