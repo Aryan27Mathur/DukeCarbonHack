@@ -1,0 +1,3 @@
+"(PDH-CSV 4.0) (Eastern Daylight Time)(240)","\\PSE-PCW14\Processor(_Total)\% Processor Time"
+"10/26/2022 23:25:45.022"," "
+"10/26/2022 23:25:46.039","16.866190658516167389"

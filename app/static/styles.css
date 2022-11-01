@@ -7,7 +7,6 @@ body{
 }
 
 #aboutus{
-  //background-image: url('https://replit.com/@AryanMathur4/DukeCarbonHack#data/AboutUs.png');
   background-image: url('https://lh4.googleusercontent.com/rV82qAwnHGhaQhqFSpNqR7Ky5Ail7AkP3pywCUhf_72_i-t3zRfTH8XCtCT6aX4SXkE=w2400');
   /*background-repeat: no-repeat;
   background-attachment: scroll;
@@ -15,8 +14,8 @@ body{
   background-size: contain;
   overflow-y: auto;
   height: 1458px;
-  width: contain;*/
-  // I wrote two implementations here, one above comment and another below.
+  width: contain;
+  // I wrote two implementations here, one above comment and another below.*/
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center 50px;
