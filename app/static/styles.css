@@ -7,7 +7,21 @@ body{
 }
 
 #aboutus{
-  background-image: url('https://replit.com/@AryanMathur4/DukeCarbonHack#data/AboutUs.png');
+  //background-image: url('https://replit.com/@AryanMathur4/DukeCarbonHack#data/AboutUs.png');
+  background-image: url('https://lh4.googleusercontent.com/rV82qAwnHGhaQhqFSpNqR7Ky5Ail7AkP3pywCUhf_72_i-t3zRfTH8XCtCT6aX4SXkE=w2400');
+  /*background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: 0px 50px;
+  background-size: contain;
+  overflow-y: auto;
+  height: 1458px;
+  width: contain;*/
+  // I wrote two implementations here, one above comment and another below.
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center 50px;
+  background-size: 100vw 97vh;
+  
 }
 
 #navbar{
@@ -47,4 +61,11 @@ body{
 
 h1{
   color: #ecf9ec;
+  display: flex;
+  justify-content: space-around;
+  align: space-around;
+  background-color: rgba(230, 255, 210, 0.4);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 275px;
 }

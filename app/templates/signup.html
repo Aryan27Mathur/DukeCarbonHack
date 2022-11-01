@@ -2,59 +2,48 @@
 
 {% block content %}
 <!-- Section: Design Block -->
-<section class="text-center">
-  <!-- Background image -->
-  <div class="p-5 bg-image" style="
-        background-image: url(''https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.treesaw.co.uk%2Fwp-content%2Fuploads%2F2020%2F03%2Ftree-3822149_1920.jpg&f=1&nofb=1&ipt=e877f77b0aba587c6ddd042bb53911d7e1dd53e7258b96648549d1a6d5a98990&ipo=images');
-        height: 100%;
-        "></div>
-  <!-- Background image -->
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
-        margin-top: -30px;
-        background: hsla(0, 0%, 100%, 0.8);
-        backdrop-filter: blur(30px);
-        ">
-    <div class="card-body py-5 px-md-5">
+            <div class="mb-md-5 mt-md-4 pb-5">
 
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="fw-bold mb-5">Sign up for KarbonWeaver!</h2>
-          <form>
-            <!-- 2 column grid layout with text inputs for the first and last names -->
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
-                  <label class="form-label" for="form3Example1">First name</label>
-                </div>
+              <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
+              <p class="text-white-50 mb-5">Create a new account on KarbonWeaver!</p>
+
+              <div class="form-outline form-white mb-4">
+                <input type="text" id="typeFirstNameX" class="form-control form-control-lg" />
+                <label class="form-label" for="typeFirstNameX">First Name</label>
               </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" />
-                  <label class="form-label" for="form3Example2">Last name</label>
-                </div>
+              
+              <div class="form-outline form-white mb-4">
+                <input type="text" id="typeLastNameX" class="form-control form-control-lg" />
+                <label class="form-label" for="typeLastNameX">Last Name</label>
               </div>
+
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX">Email</label>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX">Password</label>
+              </div>
+
+              <button class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up</button>
+
             </div>
 
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
-              <label class="form-label" for="form3Example3">Email address</label>
+            <div>
+              <p class="mb-0">Already have an account? <a href="https://DukeCarbonHack.aryanmathur4.repl.co/login" class="text-white-50 fw-bold">Log in</a>
+              </p>
             </div>
 
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="form3Example4" class="form-control" />
-              <label class="form-label" for="form3Example4">Password</label>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">
-              Sign up
-            </button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
