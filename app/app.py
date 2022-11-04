@@ -15,6 +15,10 @@ import db.hosts
 # token = requests.get(login_url, auth=HTTPBasicAuth(wt_username, wt_password)).json()['token']
 
 
+# Parsing the page
+# (We need to use page.content rather than
+# page.text because html.fromstring implicitly
+# expects bytes as input.)
 
 
 app = Flask(__name__)
@@ -62,5 +66,10 @@ def login():
 @app.route('/signup')
 def signup():
   return render_template("signup.html")
+
+@app.route('/watt', methods = ['POST', 'GET'])
+def watt():
+  print(str(request.get_data().decode('ASCII')))
+  return 'watt info received!'
   
 app.run(host='0.0.0.0', port=81)
