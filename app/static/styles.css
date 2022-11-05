@@ -7,19 +7,18 @@ body{
 }
 
 #aboutus{
-  background-image: url('https://lh6.googleusercontent.com/h6e04xpcS-UoKaahucjBVhErA9eQZCALGGFE9JekjavVkCFax9GLrSBwlQIwME13-00=w2400');
-  background-repeat: no-repeat;
+background-image: url('https://lh6.googleusercontent.com/h6e04xpcS-UoKaahucjBVhErA9eQZCALGGFE9JekjavVkCFax9GLrSBwlQIwME13-00=w2400');
+/*   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: 0px 50px;
   background-size: contain;
-  overflow-y: auto;
-  height: 1458px;
-  width: contain;
-/*   // I wrote two implementations here, one above comment and another below.*/ */
-/*   background-repeat: no-repeat;
+  height: 1400px;
+  width: contain; */ */
+/*   // I wrote two implementations here, one above comment and another below.*/ 
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center 50px;
-  background-size: 100vw 97vh; */
+  background-size: 100vw 97vh;
   
 }
 

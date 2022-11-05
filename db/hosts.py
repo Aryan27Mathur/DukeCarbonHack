@@ -89,4 +89,19 @@ def updatePower(hid, power):
   conn.close()
 
 
+def resetPower(hid):
+  conn = sqlite3.connect('data.db')
+  c = conn.cursor()
+  
+  query = f"""
+    UPDATE hosts
+    SET power = 0
+    WHERE hid = {hid};
+    """
+  c.execute(query)
+  conn.commit()
+  conn.close()
+
+
+
   

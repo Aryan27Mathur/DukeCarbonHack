@@ -70,9 +70,14 @@ def signup():
 
 @app.route('/watt', methods = ['POST', 'GET'])
 def watt():
+  
   data = str(request.get_data(), 'UTF-8').split(',')
+
+  if(data[3] == 'end'):
+    db.hosts.resetPower(int(data[1]))
+    return "host power reset"
   
   db.hosts.updatePower(int(data[1]), float(data[3]))
   return "watt info receieved"
-  
+
 app.run(host='0.0.0.0', port=81)
