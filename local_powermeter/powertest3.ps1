@@ -60,29 +60,30 @@ function Get-PerfProc() {
     # Get-CimInstance Win32_Thread -filter "ProcessHandle = 2736" | select ProcessHandle, Handle, UserModeTime
 
 
-    $pid_table = wmic path Win32_PerfFormattedData_PerfProc_Process get Name,PercentProcessorTime | findstr /i /c:Cakewalk
+    $pid_table = wmic path Win32_PerfFormattedData_PerfProc_Process get Name,PercentProcessorTime | findstr /i /c:Cakewalk #update to use PID for lookup if we have time
 
     $tot_table = wmic path Win32_PerfFormattedData_PerfProc_Process get Name,PercentProcessorTime | findstr /i /c:Total
 
-    $idle_table = wmic path Win32_PerfFormattedData_PerfProc_Process get Name,PercentProcessorTime | findstr /i /c:Idle
-
+    #$idle_table = wmic path Win32_PerfFormattedData_PerfProc_Process get Name,PercentProcessorTime | findstr /i /c:Idle
+    #echo $pid_table
     $pid_table2 = $pid_table -split '\s+'
     $tot = $tot_table -split '\s+'
-    $idle = $idle_table -split '\s+'
+    #$idle = $idle_table -split '\s+'
 
     #ECHO ($tot[1] + " is our total CPU value.")
     #ECHO ($idle[1] + " is our idle CPU value.")
     #ECHO ("" + $pid_table2[1] + " is our partial CPU value (relative to total CPU value).")
 
-    $out = [Math]::Round(100*$pid_table2[1]/($tot[1]+$idle[1]), 1)
+    #$out = [Math]::Round(100*$pid_table2[1]/($tot[1]+$idle[1]), 1)
     $out2 = [Math]::Round(100*$pid_table2[1]/($tot[1]), 1)
     # check that this doesn't truncate double digit numbers (23 to 2)
 
     #ECHO ""
-    ECHO "========================================="
+    #ECHO "========================================="
     # ECHO ($out.ToString() + "% is our CPU current utilization for our given PID.") # this will be used in power calc.
-    ECHO ($out2.ToString() + "% is our CPU max utilization for our given PID.") # this reflects what is shown in task manager.
-
+    #ECHO ($out2.ToString() + "% is our CPU max utilization for our given PID.") # this reflects what is shown in task manager.
+    
+    return $pid_table2[1]
 
 }
 
@@ -92,20 +93,19 @@ $process_id = 21756
 Get-ThreadProcessorUtilization($process_id) # finds util for Cakewalk (estimated around 1.5%-5% at rest)
 # Get-ThreadProcessorUtilization(-1) # finds util for Idle Process (est. around 80%-90% at rest)
 
-# Get-PerfProc("Cakewalk")
+$p=Get-PerfProc("Cakewalk") # if there is time, change lookup to use PID.
+$partial_CPU_usage=[int]::Parse($p)
 
-# $proc_time = typeperf "\Processor(_Total)\% Processor Time" -si 1 -sc 1 -o "perf.txt"
+#$file_out = "perf.txt"
 
-$file_out = "perf.txt"
+#Remove-Item 'perf.txt'
 
-Remove-Item 'perf.txt'
+#$proc_time = typeperf "\Processor(_Total)\% Processor Time" -si 1 -sc 2 -o $file_out
 
-$proc_time = typeperf "\Processor(_Total)\% Processor Time" -si 1 -sc 2 -o $file_out
+#$perf_data = Get-Content "perf.txt" | Format-Table
 
-$perf_data = Get-Content "perf.txt" | Format-Table
-
-$partial_CPU_usage = $perf_data[2] | Out-String
-$partial_CPU_usage = $partial_CPU_usage.Substring(27,5)
+#$partial_CPU_usage = $perf_data[2] | Out-String
+#$partial_CPU_usage = $partial_CPU_usage.Substring(27,5)
 echo ("fraction of total CPU load utilization of program with PID " + $process_id + ": " + $partial_CPU_usage + "%")
 
 #run vbs scripts
@@ -116,16 +116,16 @@ echo ("fraction of total CPU load utilization of program with PID " + $process_i
 #access data from vbs scripts
 $total_cpu_usage = Get-Content .\vbs_cpu_package_load.txt
 $cpu_power_consumption = Get-Content .\vbs_cpu_package_power.txt
-echo $total_cpu_usage
-echo $partial_CPU_usage
+#echo $total_cpu_usage
+#echo $partial_CPU_usage
 
 echo ("total CPU load utilization: " + $total_cpu_usage + "%")
-echo ("net CPU load utilization for program with PID " + $process_id + ": " + ($partial_CPU_usage/$total_cpu_usage) + "%")
+echo ("net CPU load utilization for program with PID " + $process_id + ": " + ($partial_CPU_usage/100*$total_cpu_usage) + "%")
 echo ("power consumed by CPU package: " + $cpu_power_consumption + "W")
 
 #compute partial power usage for single program.
 $program_power_consumption = (1.0 * $partial_CPU_usage/100 * $cpu_power_consumption)
-echo ("power consumed by program with PID " + $process_id + ": " + $program_power_consumption + "W")
+echo ("power consumed by program with PID " + $process_id + " over last polling interval: " + $program_power_consumption + "W")
 
 
 #curl request with power data to replit
