@@ -1,5 +1,3 @@
-# Sample I pulled online as reference for WMIC command
-
 @echo OFF
 color 0a
 cls
