@@ -7,7 +7,7 @@ body{
 }
 
 #aboutus{
-  background-image: url('https://lh4.googleusercontent.com/rV82qAwnHGhaQhqFSpNqR7Ky5Ail7AkP3pywCUhf_72_i-t3zRfTH8XCtCT6aX4SXkE=w2400');
+  background-image: url('https://lh6.googleusercontent.com/h6e04xpcS-UoKaahucjBVhErA9eQZCALGGFE9JekjavVkCFax9GLrSBwlQIwME13-00=w2400');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: 0px 50px;
@@ -67,4 +67,8 @@ h1{
   padding-top: 30px;
   padding-bottom: 30px;
   margin-top: 275px;
+
+  font-family: Bahnschrift;
+  font-size: 40;
+  font-weight: bold;
 }

@@ -27,8 +27,9 @@ app = Flask(__name__)
 
 # db = SQLAlchemy(app)
 
+#EXAMPLE CURL COMMAND
+#curl -X POST https://dukecarbonhack.aryanmathur4.repl.co/watt -d hid,0,power,123
 
-  
 
 @app.route('/')
 def base():
@@ -69,7 +70,9 @@ def signup():
 
 @app.route('/watt', methods = ['POST', 'GET'])
 def watt():
-  print(str(request.get_data().decode('ASCII')))
-  return 'watt info received!'
+  data = str(request.get_data(), 'UTF-8').split(',')
+  
+  db.hosts.updatePower(int(data[1]), float(data[3]))
+  return "watt info receieved"
   
 app.run(host='0.0.0.0', port=81)

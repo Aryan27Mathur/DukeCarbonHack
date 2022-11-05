@@ -20,6 +20,7 @@ def createHosts():
   name text,
   queue integer,
   cost real,
+  power real,
   location text,
   hardware text
   )
@@ -61,7 +62,7 @@ def importHosts():
   with open('db/data/hosts.csv') as myFile:
     csv_reader = csv.reader(myFile, delimiter=',')
     for row in csv_reader:
-      query = "INSERT INTO Hosts VALUES ({0}, {1}, {2}, {3}, {4}, {5})".format(row[0],row[1],row[2],row[3], row[4], row[5])
+      query = "INSERT INTO Hosts VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6})".format(row[0],row[1],row[2],row[3], row[4], row[5], row[6])
       c.execute(query)
 
   conn.commit()
@@ -72,6 +73,20 @@ def getAllHardware():
   c = conn.cursor()
   c.execute()
 
+
+
+def updatePower(hid, power):
+  conn = sqlite3.connect('data.db')
+  c = conn.cursor()
+  
+  query1 = f"""
+    UPDATE hosts
+    SET power = (SELECT power FROM hosts WHERE hid = {hid})+{power}
+    WHERE hid = {hid};
+    """
+  c.execute(query1)
+  conn.commit()
+  conn.close()
 
 
   
